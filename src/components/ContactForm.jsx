@@ -34,7 +34,7 @@ const ContactForm = () => {
 
     try {
       const templateParams = {
-        to_email: "andrewkulagin565@gmail.com",
+        to_email: "cliff-wilson@hotmail.com",
         from_name: formData.name,
         subject: `${formData.name} - ${tourName}`,
         message: formData.message,
@@ -84,10 +84,10 @@ const ContactForm = () => {
             <div className="flex items-center">
               <Mail className="h-6 w-6 text-blue-600 mr-3" />
               <a
-                href="mailto:andrewkulagin565@gmail.com?subject=Magnetic%20Island%20Boat%20Tour"
+                href="mailto:cliff-wilson@hotmail.com?subject=Magnetic%20Island%20Boat%20Tour"
                 className="hover:underline"
               >
-                andrewkulagin565@gmail.com
+                cliff-wilson@hotmail.com
               </a>
             </div>
           </div>
