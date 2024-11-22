@@ -1,9 +1,52 @@
 import React from "react";
 import { Star, User, ExternalLink } from "lucide-react";
 
+// Tracking function
+const trackEvent = (category, action, label) => {
+  if (window.gtag) {
+    window.gtag('event', action, {
+      'event_category': category,
+      'event_label': label
+    });
+  }
+};
+
 const GoogleReviews = () => {
   const [reviews, setReviews] = React.useState([]);
   const [error, setError] = React.useState(null);
+
+  // Function to handle Google Maps link behavior
+  const handleGoogleMapsClick = (e) => {
+    e.preventDefault();
+    trackEvent('External Link', "Button", 'Click', 'View All Reviews on Google');
+
+    const placeId = 'ChIJxYB0rUYBfmkRI_Jk0D9nvCo';
+    const businessName = 'Get Around Island Boat Tours & Hire';
+    const latitude = '-19.1682852';  // Replace with your actual coordinates
+    const longitude = '146.8492432'; // Replace with your actual coordinates
+
+    // Check if the device is mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // For iOS devices
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        // Try to open in Apple Maps first
+        window.location.href = `maps://maps.apple.com/?q=${encodeURIComponent(businessName)}&ll=${latitude},${longitude}`;
+      } else {
+        // For Android devices, open directly in Google Maps app
+        window.location.href = `google.navigation:q=${latitude},${longitude}`;
+      }
+      
+      // Fallback to web version after a short delay
+      setTimeout(() => {
+        window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(businessName)}&query_place_id=${placeId}`, '_blank');
+      }, 500);
+    } else {
+      // For desktop, open in new tab
+      window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(businessName)}&query_place_id=${placeId}`, '_blank');
+    }
+  };
 
   React.useEffect(() => {
     fetch("/reviews.json")
@@ -54,21 +97,19 @@ const GoogleReviews = () => {
           </div>
         ))}
       </div>
-
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6 w-full">
-        <a
-          href="https://www.google.com/maps/place/?q=place_id:ChIJxYB0rUYBfmkRI_Jk0D9nvCo"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={handleGoogleMapsClick}
           className="w-full sm:w-64 whitespace-nowrap inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
         >
           View All Reviews on Google
-        </a>
+        </button>
         <a
           href="https://www.tripadvisor.com.au/Attraction_Review-g499655-d7208815-Reviews-Get_Around_Island_Boat_Tours_Hire-Magnetic_Island_Queensland.html"
           target="_blank"
           rel="noopener noreferrer"
           className="w-full sm:w-64 whitespace-nowrap inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          onClick={() => trackEvent('External Link', "Button", 'Click', 'View All Reviews on Tripadvisor')}
         >
           View All Reviews on Tripadvisor
         </a>

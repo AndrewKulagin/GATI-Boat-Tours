@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin, Clock, Users, Shield } from "lucide-react";
 
+// Tracking function
+const trackEvent = (category, action, label) => {
+  if (window.gtag) {
+    window.gtag('event', action, {
+      'event_category': category,
+      'event_label': label
+    });
+  }
+};
+
 const AboutPage = () => {
   const features = [
     {
@@ -156,10 +166,11 @@ const AboutPage = () => {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <Link
-            to="/contact"
+            to={`/contact?type=General Enquiry`}
             className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all hover:scale-105 inline-block text-lg"
+            onClick={() => trackEvent("Button", "Navigation", "Click", "To Contact Us", 'Contact Us About')}
           >
-            Contact Us to Book Your Adventure
+            Contact Us
           </Link>
         </div>
       </div>

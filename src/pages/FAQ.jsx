@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+// Tracking function
+const trackEvent = (category, action, label) => {
+  if (window.gtag) {
+    window.gtag('event', action, {
+      'event_category': category,
+      'event_label': label
+    });
+  }
+};
+
 const FAQPage = () => {
   const faqs = [
     {
@@ -9,12 +19,12 @@ const FAQPage = () => {
       answer: "We offer several tour options including snorkeling trips, fishing excursions, sunset boat tours, and private charters. Each tour can be customized to your preferences and operates on 'Maggie Time' - meaning you won't be rushed from place to place."
     },
     {
-      question: "What's included in your tours?",
+      question: "What's included in our tours?",
       answer: "All tours include essential equipment such as fishing gear, life jackets, stinger suits (seasonal), first aid kit, snorkel equipment, esky, dry storage, refreshments, and drinking water. Our experienced guides provide safety briefings and instruction where needed."
     },
     {
       question: "How much do tours cost?",
-      answer: "Tours start from as little as $65 per person, with the final price depending on the number of bookings that day. We offer fantastic deals for group bookings of 6-8 people. Contact us for specific pricing based on your preferred tour and group size."
+      answer: "Tours start from as little as $100 per person, with the final price depending on the number of bookings that day. We offer fantastic deals for group bookings of 6-8 people. Contact us for specific pricing based on your preferred tour and group size."
     },
     {
       question: "Are your boats wheelchair accessible?",
@@ -93,6 +103,7 @@ const FAQPage = () => {
             <div 
               key={index}
               className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              onClick={() => trackEvent('FAQ', 'View', `FAQ ${index + 1}`)}
             >
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
                 {faq.question}
@@ -106,11 +117,12 @@ const FAQPage = () => {
 
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
-          <Link
-            to="/contact"
+        <Link
+            to={`/contact?type=General Enquiry`}
             className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all hover:scale-105 inline-block text-lg"
+            onClick={() => trackEvent('Button', "Navigation", "To Contact Us", 'Click', 'Contact Us FAQ')}
           >
-            Contact Us to Book Your Adventure
+            Contact Us
           </Link>
         </div>
       </div>

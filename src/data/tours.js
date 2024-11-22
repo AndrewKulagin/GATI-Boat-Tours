@@ -7,7 +7,7 @@ export const TOURS = [
     image: "snorkeling-hero.jpg",
     tourInfo: {
       duration: "6-8 Hours",
-      groupSize: "Up to 12 People",
+      groupSize: "Up to 8 People Per Boat",
       skillLevel: "All Welcome"
     },
     sections: [
@@ -51,7 +51,7 @@ export const TOURS = [
     image: "fishing-hero.jpg",
     tourInfo: {
       duration: "4-8 Hours",
-      groupSize: "Up to 12 People",
+      groupSize: "Up to 8 People Per Boat",
       skillLevel: "All Welcome"
     },
     sections: [
@@ -85,7 +85,7 @@ export const TOURS = [
     image: "sunset-cruise-hero.jpg",
     tourInfo: {
       duration: "2-3 Hours",
-      groupSize: "Up to 12 People",
+      groupSize: "Up to 8 People Per Boat",
       skillLevel: "All Welcome"
     },
     sections: [
@@ -119,7 +119,7 @@ export const TOURS = [
     image: "private-charter-hero.jpg",
     tourInfo: {
       duration: "Flexible (2-8 Hours)",
-      groupSize: "Up to 12 People",
+      groupSize: "Up to 8 People Per Boat",
       skillLevel: "All Welcome"
     },
     sections: [

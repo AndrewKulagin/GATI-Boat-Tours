@@ -3,9 +3,23 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { TOURS } from '../data/tours';
 
+// Tracking function
+const trackEvent = (category, action, label) => {
+  if (window.gtag) {
+    window.gtag('event', action, {
+      'event_category': category,
+      'event_label': label
+    });
+  }
+};
+
 const TourPage = () => {
   const { id } = useParams();
   const tour = TOURS.find(t => t.path === `/tours/${id}`);
+  // Track page view for specific tour
+  React.useEffect(() => {
+    trackEvent('Page View', 'Tour Page', tour.name);
+  }, [tour.name]);
 
   if (!tour) {
     return <div>Tour not found</div>;
@@ -50,8 +64,9 @@ const TourPage = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Link
-                to="/contact"
+                to={`/contact?type=Tour&tourId=${tour.id}`}
                 className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all hover:scale-105 inline-block text-lg"
+                onClick={() => trackEvent("Button", "Click", "Navigation", "To Contact Us", "Tour", "Book", tour.name)}
               >
                 Book This Tour
               </Link>
@@ -119,8 +134,9 @@ const TourPage = () => {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <Link
-            to="/contact"
+            to={`/contact?type=Tour&tourId=${tour.id}`}
             className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all hover:scale-105 inline-block text-lg"
+            onClick={() => trackEvent("Button", "Click", "Navigation", "To Contact Us", "Tour", "Book", tour.name)}
           >
             Book Your {tour.name} Adventure
           </Link>
