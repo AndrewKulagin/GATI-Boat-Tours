@@ -9,7 +9,7 @@ import FAQ from './pages/FAQ';
 import BoatHirePage from './pages/BoatHirePage';
 
 // Analytics Service
-const GA_MEASUREMENT_ID = process.env.REACT_APP_GA_MEASUREMENT_ID;
+const GA_MEASUREMENT_ID = G-G1Q96T1QXM;
 
 const loadGoogleAnalytics = () => {
   if (process.env.NODE_ENV === 'production') {
