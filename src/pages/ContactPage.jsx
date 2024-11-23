@@ -1,15 +1,6 @@
 import React from 'react';
 import ContactForm from '../components/ContactForm';
-
-// Tracking function
-const trackEvent = (category, action, label) => {
-  if (window.gtag) {
-    window.gtag('event', action, {
-      'event_category': category,
-      'event_label': label
-    });
-  }
-};
+import { trackEvent } from "../App";
 
 const ContactPage = () => {
   // Track page view when the contact page is loaded

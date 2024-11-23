@@ -5,16 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Mail, Phone } from "lucide-react";
 import { TOURS } from "../data/tours";
 import emailjs from "@emailjs/browser";
-
-// Tracking function
-const trackEvent = (category, action, label) => {
-  if (window.gtag) {
-    window.gtag("event", action, {
-      event_category: category,
-      event_label: label,
-    });
-  }
-};
+import { trackEvent } from "../App";
 
 const DEFAULT_MESSAGE = `Contact Number:
 Number of People:

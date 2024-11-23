@@ -2,16 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { TOURS } from '../data/tours';
-
-// Tracking function
-const trackEvent = (category, action, label) => {
-  if (window.gtag) {
-    window.gtag('event', action, {
-      'event_category': category,
-      'event_label': label
-    });
-  }
-};
+import { trackEvent } from "../App";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);

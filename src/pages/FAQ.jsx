@@ -1,17 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-
-// Tracking function
-const trackEvent = (category, action, label) => {
-  if (window.gtag) {
-    window.gtag('event', action, {
-      'event_category': category,
-      'event_label': label
-    });
-  }
-};
-
+import { trackEvent } from "../App";
 const FAQPage = () => {
   const faqs = [
     {

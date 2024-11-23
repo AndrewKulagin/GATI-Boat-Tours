@@ -8,58 +8,61 @@ import TourPage from './pages/TourPage';
 import FAQ from './pages/FAQ';
 import BoatHirePage from './pages/BoatHirePage';
 
-// Analytics Service
 const GA_MEASUREMENT_ID = "G-G1Q96T1QXM";
 
-const loadGoogleAnalytics = () => {
-  if (process.env.NODE_ENV === 'production') {
+// Analytics wrapper component
+const AnalyticsWrapper = ({ children }) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Load Google Analytics script
     const script = document.createElement('script');
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
     script.async = true;
     document.head.appendChild(script);
 
+    // Initialize GA
     window.dataLayer = window.dataLayer || [];
-    function gtag(){window.dataLayer.push(arguments);}
-    
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
     gtag('js', new Date());
-    gtag('config', GA_MEASUREMENT_ID, {
-      'anonymize_ip': true,
-    });
-  }
-};
+    gtag('config', GA_MEASUREMENT_ID);
 
-const trackPageView = (path) => {
-  if (window.gtag) {
-    window.gtag('event', 'page_view', {
-      'page_path': path
-    });
-  }
-};
-
-// Analytics Tracking Wrapper Component
-const AnalyticsTracking = ({ children }) => {
-  const location = useLocation();
-
-  useEffect(() => {
-    // Load Google Analytics on initial load
-    loadGoogleAnalytics();
+    return () => {
+      document.head.removeChild(script);
+    };
   }, []);
 
+  // Track page views
   useEffect(() => {
-    // Track page views on route change
-    trackPageView(location.pathname);
-    
-    // Optional: Scroll to top on route change
-    window.scrollTo(0, 0);
+    if (window.gtag) {
+      window.gtag('event', 'page_view', {
+        page_path: location.pathname + location.search,
+        page_location: window.location.href,
+        page_title: document.title
+      });
+    }
   }, [location]);
 
   return children;
 };
 
+// Event tracking function that can be exported
+export const trackEvent = (category, action, label) => {
+  if (window.gtag) {
+    window.gtag("event", action, {
+      event_category: category,
+      event_label: label,
+    });
+  }
+};
+
 const App = () => {
   return (
     <Router>
-      <AnalyticsTracking>
+      <AnalyticsWrapper>
         <div className="min-h-screen bg-gray-50">
           <Navigation />
           <Routes>
@@ -71,7 +74,7 @@ const App = () => {
             <Route path="/boat-hire" element={<BoatHirePage />} />
           </Routes>
         </div>
-      </AnalyticsTracking>
+      </AnalyticsWrapper>
     </Router>
   );
 };

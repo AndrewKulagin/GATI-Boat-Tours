@@ -4,16 +4,7 @@ import { TOURS } from "../data/tours";
 import { MapPin, Phone, Anchor } from "lucide-react";
 import { motion } from "framer-motion";
 import GoogleReviews from "../components/GoogleReviews";
-
-// Tracking function
-const trackEvent = (category, action, label) => {
-  if (window.gtag) {
-    window.gtag("event", action, {
-      event_category: category,
-      event_label: label,
-    });
-  }
-};
+import { trackEvent } from "../App";
 
 const GALLERY_IMAGES = [
   {
