@@ -42,7 +42,7 @@ const Navigation = () => {
               className="text-xl font-bold"
               onClick={() => trackEvent("Navigation", "To Home", 'Link', 'Click', 'Home Logo')}
             >
-              Get Around the Island
+              Get Around Island
             </Link>
           </div>
          
