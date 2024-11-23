@@ -8,32 +8,9 @@ import TourPage from './pages/TourPage';
 import FAQ from './pages/FAQ';
 import BoatHirePage from './pages/BoatHirePage';
 
-const GA_MEASUREMENT_ID = "G-G1Q96T1QXM";
-
 // Analytics wrapper component
 const AnalyticsWrapper = ({ children }) => {
   const location = useLocation();
-
-  useEffect(() => {
-    // Load Google Analytics script
-    const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-    script.async = true;
-    document.head.appendChild(script);
-
-    // Initialize GA
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      window.dataLayer.push(arguments);
-    }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', GA_MEASUREMENT_ID);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
 
   // Track page views
   useEffect(() => {
