@@ -140,7 +140,7 @@ const HomePage = () => {
         )}
 
         <div className="absolute inset-0 flex items-center justify-center text-center z-20">
-          <div className="text-white max-w-4xl px-4 backdrop-blur-sm bg-black/70 p-8 rounded-lg">
+          <div className="text-white max-w-4xl px-4 backdrop-blur-sm bg-black/50 p-8 rounded-lg">
             <motion.h1
               className="text-5xl md:text-6xl font-bold mb-6 text-shadow-lg"
               initial={{ opacity: 0, y: 20 }}
