@@ -1,0 +1,22 @@
+{
+    "navigationFallback": {
+      "rewrite": "/index.html",
+      "exclude": ["/images/*", "/*.{png,jpg,gif,svg,js,css}", "/manifest.json"]
+    },
+    "routes": [
+      {
+        "route": "/*",
+        "serve": "/index.html",
+        "statusCode": 200
+      }
+    ],
+    "responseOverrides": {
+      "404": {
+        "rewrite": "/index.html",
+        "statusCode": 200
+      }
+    },
+    "mimeTypes": {
+      ".json": "text/json"
+    }
+  }
