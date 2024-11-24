@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { trackEvent } from "../App";
+import { getImageUrl } from "../services/azureStorage";
+
 const FAQPage = () => {
   const faqs = [
     {
@@ -53,7 +55,7 @@ const FAQPage = () => {
         <div className="h-[40vh] relative">
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
           <img
-            src="/images/faq-hero.jpg"
+            src={getImageUrl('faq-hero.jpg')}
             alt="Magnetic Island Waters"
             className="w-full h-full object-cover"
           />

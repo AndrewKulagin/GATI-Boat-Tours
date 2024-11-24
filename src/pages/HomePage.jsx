@@ -5,46 +5,47 @@ import { MapPin, Phone, Anchor } from "lucide-react";
 import { motion } from "framer-motion";
 import GoogleReviews from "../components/GoogleReviews";
 import { trackEvent } from "../App";
+import { getImageUrl } from "../services/azureStorage";
 
 const GALLERY_IMAGES = [
   {
-    src: "/images/h1.jpg",
+    src: getImageUrl("h1.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h2.jpg",
+    src: getImageUrl("h2.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h3.jpg",
+    src: getImageUrl("h3.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h4.jpg",
+    src: getImageUrl("h4.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h5.jpg",
+    src: getImageUrl("h5.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h6.jpg",
+    src: getImageUrl("h6.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h7.jpg",
+    src: getImageUrl("h7.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h8.jpg",
+    src: getImageUrl("h8.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h9.jpg",
+    src: getImageUrl("h9.jpg"),
     alt: "Home Image",
   },
   {
-    src: "/images/h10.jpg",
+    src: getImageUrl("h10.jpg"),
     alt: "Home Image",
   },
 ];
@@ -119,11 +120,13 @@ const HomePage = () => {
               alt={GALLERY_IMAGES[0].alt}
               className="absolute w-full h-full object-cover"
               initial={{ opacity: 0 }}
-              animate={{ opacity: !imagesLoaded || currentImageIndex === 0 ? 1 : 0 }}
+              animate={{
+                opacity: !imagesLoaded || currentImageIndex === 0 ? 1 : 0,
+              }}
               transition={{ duration: 1, ease: "easeInOut" }}
             />
           )}
-          
+
           {imagesLoaded &&
             GALLERY_IMAGES.slice(1).map((image, index) => (
               <motion.img
@@ -149,7 +152,10 @@ const HomePage = () => {
             <motion.h1
               className="text-5xl md:text-6xl font-bold mb-6 text-shadow-lg"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: firstImageLoaded ? 1 : 0, y: firstImageLoaded ? 0 : 20 }}
+              animate={{
+                opacity: firstImageLoaded ? 1 : 0,
+                y: firstImageLoaded ? 0 : 20,
+              }}
               transition={{ delay: 0.3 }}
             >
               Discover Magnetic Island
@@ -157,7 +163,10 @@ const HomePage = () => {
             <motion.p
               className="text-xl md:text-2xl mb-8 text-shadow"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: firstImageLoaded ? 1 : 0, y: firstImageLoaded ? 0 : 20 }}
+              animate={{
+                opacity: firstImageLoaded ? 1 : 0,
+                y: firstImageLoaded ? 0 : 20,
+              }}
               transition={{ delay: 0.5 }}
             >
               Experience the island's hidden treasures with Magnetic Island's
@@ -172,7 +181,15 @@ const HomePage = () => {
               <Link
                 to="/contact?type=Tour"
                 className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-700 transition-all hover:scale-105 inline-block"
-                onClick={() => trackEvent("Button", "Navigation", "Click", "To Contact Us", "Book Now")}
+                onClick={() =>
+                  trackEvent(
+                    "Button",
+                    "Navigation",
+                    "Click",
+                    "To Contact Us",
+                    "Book Now"
+                  )
+                }
               >
                 Book Now
               </Link>
@@ -198,7 +215,12 @@ const HomePage = () => {
               rel="noopener noreferrer"
               className="hover:underline"
               onClick={() =>
-                trackEvent("Link", "External Link", "Click", "Google Maps Location")
+                trackEvent(
+                  "Link",
+                  "External Link",
+                  "Click",
+                  "Google Maps Location"
+                )
               }
             >
               Nelly Bay Harbour, Kelly Street
@@ -209,7 +231,9 @@ const HomePage = () => {
             <a
               href="tel:0448434292"
               className="hover:underline"
-              onClick={() => trackEvent("Link", "External Link", "Click", "Phone Number")}
+              onClick={() =>
+                trackEvent("Link", "External Link", "Click", "Phone Number")
+              }
             >
               0448 434 292
             </a>
@@ -245,7 +269,7 @@ const HomePage = () => {
                 onClick={() => trackEvent("Tour", "View", tour.name)}
               >
                 <img
-                  src={`/images/${tour.image}`}
+                  src={tour.image}
                   alt={tour.name}
                   className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
                 />
@@ -266,12 +290,20 @@ const HomePage = () => {
             </motion.div>
           ))}
         </div>
-        
+
         <div className="text-center mt-8">
           <Link
             to="/contact?type=Tour"
             className="bg-blue-600 text-white px-8 py-4 rounded-lg text-xl hover:bg-blue-700 transition-all hover:scale-105 inline-block"
-            onClick={() => trackEvent("Button", "Navigation", "To Contact Us", "Click", "Book Your Adventure")}
+            onClick={() =>
+              trackEvent(
+                "Button",
+                "Navigation",
+                "To Contact Us",
+                "Click",
+                "Book Your Adventure"
+              )
+            }
           >
             Book Your Adventure
           </Link>
@@ -289,7 +321,7 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
               <img
-                src="/images/boat-hire-hero.jpg"
+                src={getImageUrl('boat-hire-hero.jpg')}
                 alt="Boat Hire"
                 className="w-full h-full object-cover"
               />
@@ -309,7 +341,13 @@ const HomePage = () => {
                 to="/boat-hire"
                 className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-700 transition-all hover:scale-105 inline-block"
                 onClick={() =>
-                  trackEvent("Button", "Navigation", "Click", "To Boat Hire", "Boat Hire Learn More")
+                  trackEvent(
+                    "Button",
+                    "Navigation",
+                    "Click",
+                    "To Boat Hire",
+                    "Boat Hire Learn More"
+                  )
                 }
               >
                 Learn More About Boat Hire

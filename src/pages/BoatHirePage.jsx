@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { trackEvent } from "../App";
+import { getImageUrl } from "../services/azureStorage";
 
 const BoatHirePage = () => {
   return (
@@ -12,7 +13,7 @@ const BoatHirePage = () => {
         <div className="h-[60vh] relative">
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
           <img
-            src="/images/boat-hire-hero.jpg"
+            src={getImageUrl('boat-hire-hero.jpg')}
             alt="Boat Hire"
             className="w-full h-full object-cover"
           />
@@ -93,7 +94,7 @@ const BoatHirePage = () => {
             </div>
             <div className="md:order-2">
               <img
-                src="/images/boat-freedom.jpg"
+                src={getImageUrl('boat-freedom.jpg')}
                 alt="Explore freely"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />
@@ -116,7 +117,7 @@ const BoatHirePage = () => {
             </div>
             <div className="md:order-1">
               <img
-                src="/images/boat-equipment.jpg"
+                src={getImageUrl('boat-equipment.jpg')}
                 alt="Boat Equipment"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />
@@ -139,7 +140,7 @@ const BoatHirePage = () => {
             </div>
             <div className="md:order-2">
               <img
-                src="/images/boat-briefing.jpg"
+                src={getImageUrl('boat-briefing.jpg')}
                 alt="Expert Briefing"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />

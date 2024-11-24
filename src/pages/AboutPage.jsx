@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin, Clock, Users, Shield } from "lucide-react";
 import { trackEvent } from "../App";
+import { getImageUrl } from "../services/azureStorage";
 
 const AboutPage = () => {
   const features = [
@@ -38,7 +39,7 @@ const AboutPage = () => {
         <div className="h-[60vh] relative">
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
           <img
-            src="/images/about-hero.jpg"
+            src={getImageUrl('about-hero.jpg')}
             alt="Get Around Island Boat Tours"
             className="w-full h-full object-cover"
           />
@@ -112,7 +113,7 @@ const AboutPage = () => {
             </div>
             <div>
               <img
-                src="/images/cliff.jpg"
+                src={getImageUrl('cliff.jpg')}
                 alt="Boat tour experience"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />
@@ -146,7 +147,7 @@ const AboutPage = () => {
             </div>
             <div className="md:order-1">
               <img
-                src="/images/about-main.jpg"
+                src={getImageUrl('about-main.jpg')}
                 alt="Tour equipment"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />

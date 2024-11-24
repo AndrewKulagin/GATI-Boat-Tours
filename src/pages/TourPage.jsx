@@ -24,7 +24,7 @@ const TourPage = () => {
         <div className="h-[60vh] relative">
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
           <img
-            src={`/images/${tour.image}`}
+            src={tour.image}
             alt={tour.name}
             className="w-full h-full object-cover"
           />
@@ -113,7 +113,7 @@ const TourPage = () => {
                 index % 2 === 0 ? 'md:order-2' : 'md:order-1'
               }>
                 <img
-                  src={`/images/${section.image}`}
+                  src={section.image}
                   alt={section.title}
                   className="w-full h-[400px] object-cover rounded-lg shadow-lg"
                 />
