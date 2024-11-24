@@ -11,44 +11,28 @@ import { Helmet } from 'react-helmet';
 const GALLERY_IMAGES = [
   {
     src: getImageUrl("h1.jpg"),
-    alt: "Home Image",
+    alt: "Magnetic Island Turtle 1",
   },
   {
     src: getImageUrl("h2.jpg"),
-    alt: "Home Image",
+    alt: "Magnetic Island Snorkelling",
   },
   {
     src: getImageUrl("h3.jpg"),
-    alt: "Home Image",
+    alt: "Magnetic Island Jetty",
   },
   {
     src: getImageUrl("h4.jpg"),
-    alt: "Home Image",
+    alt: "Magnetic Island Map",
   },
   {
     src: getImageUrl("h5.jpg"),
-    alt: "Home Image",
+    alt: "Magnetic Island Turtle 2",
   },
   {
     src: getImageUrl("h6.jpg"),
-    alt: "Home Image",
-  },
-  {
-    src: getImageUrl("h7.jpg"),
-    alt: "Home Image",
-  },
-  {
-    src: getImageUrl("h8.jpg"),
-    alt: "Home Image",
-  },
-  {
-    src: getImageUrl("h9.jpg"),
-    alt: "Home Image",
-  },
-  {
-    src: getImageUrl("h10.jpg"),
-    alt: "Home Image",
-  },
+    alt: "Magnetic Island Waves",
+  }
 ];
 
 const HomePage = () => {
