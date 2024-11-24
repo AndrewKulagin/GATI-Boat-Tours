@@ -119,7 +119,7 @@ const HomePage = () => {
       </Helmet>
       {/* Hero Section */}
       <div className="relative h-screen z-0">
-        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
 
         <div className="absolute inset-0 z-0">
           {firstImageLoaded && (
