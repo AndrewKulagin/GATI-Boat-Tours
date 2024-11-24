@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import GoogleReviews from "../components/GoogleReviews";
 import { trackEvent } from "../App";
 import { getImageUrl } from "../services/azureStorage";
+import { Helmet } from 'react-helmet';
 
 const GALLERY_IMAGES = [
   {
@@ -109,6 +110,13 @@ const HomePage = () => {
 
   return (
     <div className="overflow-hidden">
+      <Helmet>
+        <title>Magnetic Island Boat Tours & Hire | Snorkelling, Fishing & Sunset Cruises</title>
+        <meta 
+          name="description" 
+          content="Experience Magnetic Island's longest-running boat tours. Join us for snorkelling, fishing, sunset cruises and private charters, or hire your own boat. Departing daily from Nelly Bay." 
+        />
+      </Helmet>
       {/* Hero Section */}
       <div className="relative h-screen z-0">
         <div className="absolute inset-0 bg-black/60 z-10"></div>

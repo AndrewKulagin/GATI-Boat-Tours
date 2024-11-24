@@ -1,3 +1,11 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://getaroundisland.com.au/sitemap.xml
+
+# Prevent caching of images
+User-agent: *
+Disallow: /public/images/
+
+# Allow Google Images to index images
+User-agent: Googlebot-Image
+Allow: /public/images/

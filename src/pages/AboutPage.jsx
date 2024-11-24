@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, Clock, Users, Shield } from "lucide-react";
 import { trackEvent } from "../App";
 import { getImageUrl } from "../services/azureStorage";
+import { Helmet } from "react-helmet";
 
 const AboutPage = () => {
   const features = [
@@ -34,12 +35,22 @@ const AboutPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>
+          About Get Around Island Boat Tours | Magnetic Island Adventures
+        </title>
+        <meta
+          name="description"
+          content="Learn about Get Around Island Boat Tours and our commitment to delivering unforgettable Magnetic Island experiences. Explore stunning waters, vibrant reefs, and more."
+        />
+      </Helmet>
+
       {/* Hero Section */}
       <div className="relative">
         <div className="h-[60vh] relative">
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
           <img
-            src={getImageUrl('about-hero.jpg')}
+            src={getImageUrl("about-hero.jpg")}
             alt="Get Around Island Boat Tours"
             className="w-full h-full object-cover"
           />
@@ -113,7 +124,7 @@ const AboutPage = () => {
             </div>
             <div>
               <img
-                src={getImageUrl('cliff.jpg')}
+                src={getImageUrl("cliff.jpg")}
                 alt="Boat tour experience"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />
@@ -147,7 +158,7 @@ const AboutPage = () => {
             </div>
             <div className="md:order-1">
               <img
-                src={getImageUrl('about-main.jpg')}
+                src={getImageUrl("about-main.jpg")}
                 alt="Tour equipment"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />
@@ -160,7 +171,15 @@ const AboutPage = () => {
           <Link
             to={`/contact?type=General Enquiry`}
             className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all hover:scale-105 inline-block text-lg"
-            onClick={() => trackEvent("Button", "Navigation", "Click", "To Contact Us", 'Contact Us About')}
+            onClick={() =>
+              trackEvent(
+                "Button",
+                "Navigation",
+                "Click",
+                "To Contact Us",
+                "Contact Us About"
+              )
+            }
           >
             Contact Us
           </Link>
