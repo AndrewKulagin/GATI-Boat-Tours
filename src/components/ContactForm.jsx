@@ -163,7 +163,7 @@ const ContactForm = () => {
       }
 
       const templateParams = {
-        to_email: "andrewkulagin565@gmail.com",
+        to_email: "cliff-wilson@hotmail.com",
         from_name: formData.name,
         subject: `${formData.name} - ${formData.enquiryType}`,
         message: formData.message,
