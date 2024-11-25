@@ -11,26 +11,14 @@ import { Helmet } from 'react-helmet';
 const GALLERY_IMAGES = [
   {
     src: getImageUrl("h1.jpg"),
-    alt: "Magnetic Island Turtle 1",
+    alt: "Magnetic Island Beach",
   },
   {
     src: getImageUrl("h2.jpg"),
-    alt: "Magnetic Island Snorkelling",
-  },
-  {
-    src: getImageUrl("h3.jpg"),
-    alt: "Magnetic Island Jetty",
-  },
-  {
-    src: getImageUrl("h4.jpg"),
     alt: "Magnetic Island Map",
   },
   {
-    src: getImageUrl("h5.jpg"),
-    alt: "Magnetic Island Turtle 2",
-  },
-  {
-    src: getImageUrl("h6.jpg"),
+    src: getImageUrl("h3.jpg"),
     alt: "Magnetic Island Waves",
   }
 ];
