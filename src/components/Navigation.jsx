@@ -23,6 +23,27 @@ const Navigation = () => {
     trackEvent('Navigation', 'Click', eventLabel);
   };
 
+  // Helper function to check if the current path matches the link
+  const isCurrentPath = (path) => {
+    if (path === '/') {
+      return location.pathname === path;
+    }
+    return location.pathname.startsWith(path);
+  };
+
+  // Helper function to get link classes based on current path
+  const getLinkClasses = (path, isMobile = false) => {
+    const baseClasses = isMobile 
+      ? "block px-3 py-2 hover:bg-blue-700"
+      : "hover:text-gray-300";
+    
+    const activeClasses = isMobile
+      ? "font-bold bg-blue-700"
+      : "font-bold border-b-2 border-white";
+
+    return `${baseClasses} ${isCurrentPath(path) ? activeClasses : ''}`;
+  };
+
   return (
     <nav className="bg-blue-600 text-white relative z-50">
       <div className="max-w-7xl mx-auto px-4">
@@ -41,14 +62,14 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link 
               to="/" 
-              className="hover:text-gray-300"
+              className={getLinkClasses('/')}
               onClick={() => trackEvent("Button", "To Home", 'Navigation', 'Click', 'Home')}
             >
               Home
             </Link>
             <Link 
               to="/about" 
-              className="hover:text-gray-300"
+              className={getLinkClasses('/about')}
               onClick={() => trackEvent("Button", "To About Us",'Navigation', 'Click', 'About Us')}
             >
               About Us
@@ -57,7 +78,7 @@ const Navigation = () => {
             {/* Tours Dropdown */}
             <div className="relative group">
               <button 
-                className="flex items-center hover:text-gray-300 py-2"
+                className={`flex items-center hover:text-gray-300 py-2 ${location.pathname.includes('/tours') ? 'font-bold border-b-2 border-white' : ''}`}
                 onClick={() => trackEvent("Button", "Click", 'View', 'Tours Dropdown')}
               >
                 Tours <ChevronDown className="ml-1 h-4 w-4" />
@@ -68,7 +89,7 @@ const Navigation = () => {
                     <Link
                       key={tour.id}
                       to={tour.path}
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      className={`block px-4 py-2 hover:bg-gray-100 ${isCurrentPath(tour.path) ? 'font-bold bg-gray-50' : ''}`}
                       onClick={() => trackEvent("Button", "To Tour", 'Navigation', 'Click', `Tour - ${tour.name}`)}
                     >
                       {tour.name}
@@ -79,21 +100,23 @@ const Navigation = () => {
             </div>
             <Link 
               to="/boat-hire" 
-              className="hover:text-gray-300"
+              className={getLinkClasses('/boat-hire')}
               onClick={() => trackEvent("Button", "To Boat Hire",'Navigation', 'Click', 'Boat Hire')}
             >
               Boat Hire
             </Link>
             <Link 
               to="/faq" 
-              className="hover:text-gray-300"
+              className={getLinkClasses('/faq')}
               onClick={() => trackEvent("Button", "To FAQ",'Navigation', 'Click', 'FAQ')}
             >
               FAQ
             </Link>
             <Link
               to="/contact"
-              className="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200"
+              className={`bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors duration-200 ${
+                isCurrentPath('/contact') ? 'ring-2 ring-white' : ''
+              }`}
               onClick={() => trackEvent("Button", "To Book", 'Navigation', 'Click', 'Book Button')}
             >
               Book
@@ -120,14 +143,14 @@ const Navigation = () => {
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link 
               to="/" 
-              className="block px-3 py-2 hover:bg-blue-700"
+              className={getLinkClasses('/', true)}
               onClick={() => handleMobileClick("Button", "To Home", 'Mobile Home')}
             >
               Home
             </Link>
             <Link 
               to="/about" 
-              className="block px-3 py-2 hover:bg-blue-700"
+              className={getLinkClasses('/about', true)}
               onClick={() => handleMobileClick("Button", "To About Us", 'Mobile About Us')}
             >
               About Us
@@ -139,7 +162,9 @@ const Navigation = () => {
                 setOpenDropdown(openDropdown === 'tours' ? null : 'tours');
                 trackEvent("Click", 'Navigation', 'Toggle', 'Mobile Tours Dropdown');
               }}
-              className="w-full text-left px-3 py-2 hover:bg-blue-700 flex justify-between items-center"
+              className={`w-full text-left px-3 py-2 hover:bg-blue-700 flex justify-between items-center ${
+                location.pathname.includes('/tours') ? 'font-bold bg-blue-700' : ''
+              }`}
             >
               Tours <ChevronDown className="h-4 w-4" />
             </button>
@@ -149,7 +174,9 @@ const Navigation = () => {
                   <Link
                     key={tour.id}
                     to={tour.path}
-                    className="block px-3 py-2 hover:bg-blue-700"
+                    className={`block px-3 py-2 hover:bg-blue-700 ${
+                      isCurrentPath(tour.path) ? 'font-bold bg-blue-700' : ''
+                    }`}
                     onClick={() => handleMobileClick("Button", "To Tour", `Mobile Tour - ${tour.name}`)}
                   >
                     {tour.name}
@@ -159,14 +186,14 @@ const Navigation = () => {
             )}
             <Link 
               to="/boat-hire" 
-              className="block px-3 py-2 hover:bg-blue-700"
+              className={getLinkClasses('/boat-hire', true)}
               onClick={() => handleMobileClick("Button", "To Boat Hire", 'Mobile Boat Hire')}
             >
               Boat Hire
             </Link>
             <Link 
               to="/faq" 
-              className="block px-3 py-2 hover:bg-blue-700"
+              className={getLinkClasses('/faq', true)}
               onClick={() => handleMobileClick("Button", "To FAQ", 'Mobile FAQ')}
             >
               FAQ
@@ -174,7 +201,9 @@ const Navigation = () => {
             <div className="px-3 pt-2 pb-1">
               <Link
                 to="/contact"
-                className="block text-center py-3 border-2 border-white text-white rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
+                className={`block text-center py-3 border-2 border-white text-white rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 ${
+                  isCurrentPath('/contact') ? 'bg-blue-700 font-bold' : ''
+                }`}
                 onClick={() => handleMobileClick("Button", "To Book Now", 'Mobile Book Now')}
               >
                 Book Now
