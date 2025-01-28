@@ -313,8 +313,7 @@ const HomePage = () => {
                 Experience the freedom of exploring Magnetic Island's stunning
                 waters at your own pace. Our well-maintained fleet of boats is
                 perfect for fishing, snorkeling, or simply cruising around the
-                island's beautiful bays and beaches. Available for full or
-                half-day hire, each boat comes fully equipped with safety gear
+                island's beautiful bays and beaches. Each boat comes fully equipped with safety gear
                 and can accommodate up to 8 people.
               </p>
               <Link
