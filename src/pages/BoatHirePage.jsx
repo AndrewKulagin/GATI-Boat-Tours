@@ -79,7 +79,7 @@ const BoatHirePage = () => {
           <div className="flex flex-wrap justify-center gap-8 sm:gap-12 text-center">
             <div className="min-w-[160px]">
               <h3 className="font-semibold text-xl mb-2">Duration</h3>
-              <p>Full or Half Day</p>
+              <p>All Day</p>
             </div>
             <div className="min-w-[160px]">
               <h3 className="font-semibold text-xl mb-2">Capacity</h3>
@@ -142,7 +142,7 @@ const BoatHirePage = () => {
             </div>
             <div className="md:order-1">
               <img
-                src={getImageUrl("boat-equipment.jpg")}
+                src={getImageUrl("boat-equipment.JPG")}
                 alt="Boat Equipment"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg"
               />
