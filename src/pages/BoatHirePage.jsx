@@ -89,6 +89,10 @@ const BoatHirePage = () => {
               <h3 className="font-semibold text-xl mb-2">License</h3>
               <p>Required</p>
             </div>
+            <div className="min-w-[160px]">
+              <h3 className="font-semibold text-xl mb-2">Price</h3>
+              <p>$280</p>
+            </div>
           </div>
         </div>
       </div>
