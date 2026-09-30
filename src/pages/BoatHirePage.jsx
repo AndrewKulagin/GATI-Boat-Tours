@@ -91,7 +91,7 @@ const BoatHirePage = () => {
             </div>
             <div className="min-w-[160px]">
               <h3 className="font-semibold text-xl mb-2">Price</h3>
-              <p>$280</p>
+              <p>$300</p>
             </div>
           </div>
         </div>
